@@ -1,0 +1,14 @@
+# Base image with Jenkins pre-installed
+FROM jenkins/jenkins:lts
+
+# Switch to root user for installation
+USER root
+
+# Install git
+RUN apt-get update && \
+    apt-get install -y git && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Switch back to the Jenkins user
+USER jenkins
