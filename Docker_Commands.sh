@@ -42,3 +42,37 @@ System and Cleanup:
 
 docker system prune: Remove unused data (containers, images, volumes, and networks).
 docker system df: Display Docker disk usage statistics.
+
+# Initializing and Joining a Swarm:
+docker swarm init
+docker swarm join --token <TOKEN> <MANAGER_IP>:<PORT>
+docker swarm join --token <TOKEN> --manager --advertise-addr <MANAGER_IP> <MANAGER_IP>:<PORT>
+
+
+# Managing Nodes:
+docker node ls
+docker node promote <NODE_ID>
+docker node demote <NODE_ID>
+
+Creating and Scaling Services:
+
+docker service create --name <SERVICE_NAME> <IMAGE>
+
+docker service scale <SERVICE_NAME>=<REPLICA_COUNT>
+
+docker service update --<FLAG> <VALUE> <SERVICE_NAME>
+
+#Inspecting Services:
+docker service ls
+docker service inspect <SERVICE_NAME>
+docker service logs <SERVICE_NAME>
+
+#Removing Services and Nodes:
+docker service rm <SERVICE_NAME>
+docker node update --availability drain <NODE_ID>
+docker node rm <NODE_ID>
+docker service scale <SERVICE_NAME>=0
+docker service scale <SERVICE_NAME>=<REPLICA_COUNT>
+
+
+
