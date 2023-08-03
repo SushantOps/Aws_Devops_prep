@@ -1,0 +1,41 @@
+pipeline {
+    agent any 
+
+    stages {
+        stage('buid'){
+            steps {
+                sh "mvn clean package"
+            }
+        }
+
+        stage ('test') {
+            steps {
+                sh "mvn test"
+            }
+        }
+        stage ('deploy') {
+            steps {
+                echo "mvn deploy"
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'This step will always be executed'
+        }
+        sucess {
+            echo "This executed only sucess"
+        }
+        failure {
+            echo 'This step will be executed only on failure'
+        }
+        unstable {
+            echo 'This step will be executed only on unstable build'
+        }
+        changed {
+            echo 'This step will be executed if the result has changed'
+        }
+    }
+
+}
