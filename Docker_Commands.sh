@@ -38,8 +38,8 @@ docker-compose logs: View output from containers defined in the docker-compose.y
 docker login: Log in to a Docker registry.
 docker push: Push an image or a repository to a registry.
 docker pull: Pull an image or a repository from a registry.
-System and Cleanup:
 
+#System and Cleanup:
 docker system prune: Remove unused data (containers, images, volumes, and networks).
 docker system df: Display Docker disk usage statistics.
 
