@@ -1,0 +1,38 @@
+# Stage 1: Build the application
+# Use an official Node.js image as the base image for the build stage
+FROM node:14 AS builder
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the package.json and package-lock.json files to the container
+COPY package*.json ./
+
+# Install the application dependencies
+RUN npm ci
+
+# Copy the application source code to the container
+COPY ./src ./src
+
+# Build the application (you can replace "build" with your actual build command)
+RUN npm run build
+
+# Stage 2: Create a production-ready image
+# Use a lightweight Node.js image as the base image for the production stage
+FROM node:14-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the built files from the builder stage to the production stage
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./package.json
+
+# Install only production dependencies (omit dev dependencies)
+RUN npm install --production
+
+# Expose the port on which the application listens (if applicable)
+EXPOSE 3000
+
+# Start the application (you can replace "start" with your actual start command)
+CMD ["npm", "start"]
