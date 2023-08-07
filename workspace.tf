@@ -17,8 +17,8 @@ resource "aws_instance" "example" {
 
 # Testing configuration
 terraform {
-  workspace "testing"
-}
+  workspace "testing" 
+  }
 
 resource "aws_instance" "example" {
   ami           = "ami-0c55b159cbfafe1f0"

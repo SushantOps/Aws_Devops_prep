@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  config_file.txt: |
+    key1: value1
+    key2: value2
+  another_config_file.yaml: |
+    keyA: valueA
+    keyB: valueB
