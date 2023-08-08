@@ -1,0 +1,12 @@
+name: Self-Hosted Runner Workflow
+on:
+  push:
+    branches:
+      - main
+jobs:
+  self-hosted-runner-job:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Other steps that require self-hosted runner capabilities

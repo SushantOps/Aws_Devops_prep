@@ -1,0 +1,14 @@
+name: Custom Docker Container
+on:
+  push:
+    branches:
+      - main
+jobs:
+  custom-container-job:
+    runs-on: ubuntu-latest
+    container:
+      image: docker://your-custom-image:tag
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # Other steps using your custom Docker container
